@@ -64,7 +64,7 @@ export default function Users(props) {
     if (Object.keys(user).length !== 0) {
       setVisible(true);
     }
-  });
+  },[user]);
 
   return (
     <>
