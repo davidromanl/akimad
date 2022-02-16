@@ -6,24 +6,28 @@ const { TabPane } = Tabs;
 
 export default function Users(props) {
   const [visible, setVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState("0");
   const [details, setDetails] = useState({});
   const [repos, setRepos] = useState([]);
   const [organ, setOrgan] = useState([]);
 
   const handleCancel = () => {
     props.setUser({});
+    setActiveTab("0");
     setVisible(false);
   };
 
   const handleOk = () => {
     props.setUser({});
+    setActiveTab("0");
     setVisible(false);
   };
 
   const onChangeTab = (e) => {
-    switch (e) {
+    setActiveTab(e);
+    switch (parseInt(e)) {
       case 1:
-        getApiDetails(user.url)
+        getApiDetails(user.url);
         break;
       case 2:
         getApiRepos(user.repos_url);
@@ -31,7 +35,8 @@ export default function Users(props) {
       case 3:
         getApiOrgan(user.organizations_url);
         break;
-      }
+      default:
+        break;
     }
   };
 
@@ -76,7 +81,11 @@ export default function Users(props) {
             <img src={user.avatar_url} alt="avatar" className="Avatar" />
           </Col>
           <Col span={16}>
-            <Tabs defaultActiveKey="0" onChange={onChangeTab}>
+            <Tabs
+              activeKey={activeTab}
+              defaultActiveKey="0"
+              onChange={onChangeTab}
+            >
               <TabPane tab="Info" key="0">
                 <div>
                   <p>
@@ -92,35 +101,56 @@ export default function Users(props) {
               </TabPane>
               <TabPane tab="Detalles Usuario" key="1">
                 <div>
-                  <p><strong>Nombre</strong> {details.name}</p>
-                  <p><strong>Biografia</strong> {details.bio}</p>
-                  <p><strong>Tipo</strong> {details.type}</p>
-                  <p><strong>Compañia</strong> {details.company}</p>
-                  <p><strong>Blog</strong> {details.blog}</p>
-                  <p><strong>Ubicación</strong> {details.location}</p>
-                  <p><strong>Seguidores</strong> {details.followers} - <strong>Siguiendo</strong> {details.following}</p>
+                  <p>
+                    <strong>Nombre</strong> {details.name}
+                  </p>
+                  <p>
+                    <strong>Biografia</strong> {details.bio}
+                  </p>
+                  <p>
+                    <strong>Tipo</strong> {details.type}
+                  </p>
+                  <p>
+                    <strong>Compañia</strong> {details.company}
+                  </p>
+                  <p>
+                    <strong>Blog</strong> {details.blog}
+                  </p>
+                  <p>
+                    <strong>Ubicación</strong> {details.location}
+                  </p>
+                  <p>
+                    <strong>Seguidores</strong> {details.followers} -{" "}
+                    <strong>Siguiendo</strong> {details.following}
+                  </p>
                 </div>
               </TabPane>
               <TabPane tab="Repositorios" key="2">
-                <List dataSource={repos} renderItem={item => (
+                <List
+                  dataSource={repos}
+                  renderItem={(item) => (
                     <List.Item>
-                        <List.Item.Meta
-                            title={item.name}
-                            description={item.description}
-                        />
+                      <List.Item.Meta
+                        title={item.name}
+                        description={item.description}
+                      />
                     </List.Item>
-                )}></List>
+                  )}
+                ></List>
               </TabPane>
               <TabPane tab="Compañias" key="3">
-              <List dataSource={organ} renderItem={item => (
+                <List
+                  dataSource={organ}
+                  renderItem={(item) => (
                     <List.Item>
-                        <List.Item.Meta
-                            avatar={<Avatar src={item.avatar_url} />}
-                            title={item.login}
-                            description={item.description}
-                        />
+                      <List.Item.Meta
+                        avatar={<Avatar src={item.avatar_url} />}
+                        title={item.login}
+                        description={item.description}
+                      />
                     </List.Item>
-                )}></List>
+                  )}
+                ></List>
               </TabPane>
             </Tabs>
           </Col>
