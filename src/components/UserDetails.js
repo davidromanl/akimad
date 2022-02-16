@@ -21,10 +21,18 @@ export default function Users(props) {
   };
 
   const onChangeTab = (e) => {
-      console.log(e)
-    if (e == 1) getApiDetails(user.url);
-    if (e == 2) getApiRepos(user.repos_url);
-    if (e == 3) getApiOrgan(user.organizations_url);
+    switch (e) {
+      case 1:
+        getApiDetails(user.url)
+        break;
+      case 2:
+        getApiRepos(user.repos_url);
+        break;
+      case 3:
+        getApiOrgan(user.organizations_url);
+        break;
+      }
+    }
   };
 
   const { user } = props;
