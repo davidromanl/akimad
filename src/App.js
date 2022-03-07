@@ -25,7 +25,7 @@ function App() {
     if (key === "Enter" && search.length) getApi();
   };
 
-  const getApi = async (event) => {
+  const getApi = async () => {
     setPercent(100);
     const url = `https://api.github.com/search/users?q=${search}&page=${page}`;
     const api = await fetch(url);
@@ -57,7 +57,7 @@ function App() {
           <span> - Total: {total}</span>
         </Col>
       </Row>
-      <Progress percent={percent} status="active" showInfo={false}/>
+      <Progress percent={percent} status="active" showInfo={false} />
       <Divider />
       <Row gutter={[16, 20]} justify="center">
         <Col span={20}>
@@ -66,13 +66,26 @@ function App() {
       </Row>
       <Row gutter={[16, 20]} justify="center">
         <Col>
-          <Button onClick={getApi} disabled={page <= 1}>
+          <Button
+            onClick={() => {
+              setPage(page - 1);
+              getApi();
+            }}
+            disabled={page <= 1}
+          >
             Anterior
           </Button>
           <Divider type="vertical" />
           <strong>Página:</strong> {page}
           <Divider type="vertical" />
-          <Button id="up" onClick={setPage}>Siguiente</Button>
+          <Button
+            onClick={() => {
+              setPage(page + 1);
+              getApi();
+            }}
+          >
+            Siguiente
+          </Button>
         </Col>
       </Row>
       <UserDetails setUser={setUser} user={user} />
