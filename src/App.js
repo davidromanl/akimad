@@ -72,7 +72,7 @@ function App() {
           <Divider type="vertical" />
           <strong>Página:</strong> {page}
           <Divider type="vertical" />
-          <Button id="up" onClick={getApi}>Siguiente</Button>
+          <Button id="up" onClick={setPage}>Siguiente</Button>
         </Col>
       </Row>
       <UserDetails setUser={setUser} user={user} />
