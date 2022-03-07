@@ -76,11 +76,8 @@ export default function Users(props) {
         width="850px"
       >
         <Row gutter={15}>
-          <Col>
-            <h2>Usuario: @{user.login}</h2>
-            <img src={user.avatar_url} alt="avatar" className="Avatar" />
-          </Col>
-          <Col span={16}>
+
+          <Col span={24}>
             <Tabs
               activeKey={activeTab}
               defaultActiveKey="0"
@@ -88,9 +85,8 @@ export default function Users(props) {
             >
               <TabPane tab="Info" key="0">
                 <div>
-                  <p>
-                    <strong>Usuario</strong> {user.login}
-                  </p>
+                <h2>Usuario: @{user.login}</h2>
+                <img src={user.avatar_url} alt="avatar" className="Avatar" />
                   <p>
                     <strong>Enlace</strong>{" "}
                     <a target="_blank" rel="noreferrer" href={user.html_url}>
