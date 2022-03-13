@@ -95,7 +95,7 @@ export default function Users(props) {
                     </a>
                   </p>
                 </div>
-               </Skeleton>
+               
               </TabPane>
               <TabPane tab="Detalles Usuario" key="1">
                     <Skeleton loading="true">
