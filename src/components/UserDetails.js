@@ -43,6 +43,7 @@ export default function Users(props) {
   const { user } = props;
 
   const getApiDetails = async (url) => {
+setDetails({});
     const api = await fetch(url);
     const details = await api.json();
     setDetails(details);
@@ -98,7 +99,7 @@ export default function Users(props) {
                
               </TabPane>
               <TabPane tab="Detalles Usuario" key="1">
-                    <Skeleton loading="true">
+                    <Skeleton loading={!details.length}>
 <div>
                   <p>
                     <strong>Nombre</strong> {details.name}
