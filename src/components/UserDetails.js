@@ -99,7 +99,8 @@ setDetails({});
                
               </TabPane>
               <TabPane tab="Detalles Usuario" key="1">
-                    <Skeleton loading={!details.length}>
+{!details.length}
+                    <Skeleton loading={!details.length} active>
 <div>
                   <p>
                     <strong>Nombre</strong> {details.name}
