@@ -84,7 +84,7 @@ export default function Users(props) {
               onChange={onChangeTab}
             >
               <TabPane tab="Info" key="0">
-               <Skeleton>
+               <Skeleton loading="true">
                 <div>
                 <h2>Usuario: @{user.login}</h2>
                 <img src={user.avatar_url} alt="avatar" className="Avatar" />
@@ -95,7 +95,7 @@ export default function Users(props) {
                     </a>
                   </p>
                 </div>
-               <Skeleton />
+               </Skeleton>
               </TabPane>
               <TabPane tab="Detalles Usuario" key="1">
                 <div>
