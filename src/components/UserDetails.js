@@ -84,7 +84,7 @@ export default function Users(props) {
               onChange={onChangeTab}
             >
               <TabPane tab="Info" key="0">
-               <Skeleton loading="true">
+           
                 <div>
                 <h2>Usuario: @{user.login}</h2>
                 <img src={user.avatar_url} alt="avatar" className="Avatar" />
@@ -98,7 +98,8 @@ export default function Users(props) {
                </Skeleton>
               </TabPane>
               <TabPane tab="Detalles Usuario" key="1">
-                <div>
+                    <Skeleton loading="true">
+<div>
                   <p>
                     <strong>Nombre</strong> {details.name}
                   </p>
@@ -122,6 +123,8 @@ export default function Users(props) {
                     <strong>Siguiendo</strong> {details.following}
                   </p>
                 </div>
+  </Skeleton>
+
               </TabPane>
               <TabPane tab="Repositorios" key="2">
                 <List
